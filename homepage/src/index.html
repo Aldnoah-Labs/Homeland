@@ -4,11 +4,40 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Static HTML Site Boilerplate</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700&display=swap" rel="stylesheet">
+  <title>Aldnoah | Central Information</title>
 </head>
 
-<body>
-    <h1>Hello Static HTML!</h1>
-    <a href="/page.html">Link to my other page</a>
-    <img src="/static/tail.png" alt="code"/>
+<body class="body">
+  <main>
+    <div class="content">
+      <canvas class="scene scene--full" id="scene"></canvas>
+      <script type="x-shader/x-vertex" id="wrapVertexShader">
+        #define PI 3.1415926535897932384626433832795
+        attribute float size;
+        void main() {
+          vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+          gl_PointSize = 3.0;
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      </script>
+      <script type="x-shader/x-fragment" id="wrapFragmentShader">
+        uniform sampler2D texture;
+        void main(){
+          vec4 textureColor = texture2D( texture, gl_PointCoord );
+          if ( textureColor.a < 0.3 ) discard;
+          vec4 dotColor = vec4(0.06, 0.18, 0.36, 0.4);
+          vec4 color = dotColor * textureColor;
+          gl_FragColor = color;
+        }
+      </script>
+      <div class="content__inner">
+        <h2 class="content__title">ALDNOAH</h2>
+        <h3 class="content__subtitle">Craft you’re humanist from technology point of view </h2>
+      </div>
+    </div>
+  </main>
+  <footer>
+      <p>©2020–∞, Aldnoah People Laboratory - Indonesia, Earth</p>
+  </footer>
 </body>
