@@ -53,6 +53,6 @@
     "last 2 versions"
   ],
   "dependencies": {
-    "three": "^0.115.0"
+    "three": "^0.137.0"
   }
 }
